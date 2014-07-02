@@ -2,7 +2,6 @@
 layout: post
 title: "GVM on Windows"
 category: groovy
-excerpt: GVM allows you to manage different versions of Gradle. It also contains some other useful Groovy tools and frameworks
 tags: [groovy, gvm]
 ---
 {% include JB/setup %}
