@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Git aliases"
-category: git
+category: dev
 tags: [git]
 ---
 {% include JB/setup %}

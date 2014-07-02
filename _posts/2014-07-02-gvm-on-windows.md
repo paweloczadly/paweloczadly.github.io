@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "GVM on Windows"
-category: groovy
-tags: [groovy, gvm]
+category: dev
+tags: [groovy, gvm, windows]
 ---
 {% include JB/setup %}
 
