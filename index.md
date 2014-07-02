@@ -1,10 +1,8 @@
 ---
 layout: page
-title: Pawel Oczadly
+title: Posts
 ---
 {% include JB/setup %}
-
-## Posts
 
 <ul>
   {% for post in site.posts %}
