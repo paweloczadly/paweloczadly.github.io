@@ -27,23 +27,31 @@ More info: <http://gvmtool.net/>
 
 - Check your PowerShell version
 
-    > $PSVersionTable.PSVersion
+{% highlight PowerShell %}
+$PSVersionTable.PSVersion
+{% endhighlight %}
 
 - If the version is less than 3 update PowerShell by installing [this update](http://www.microsoft.com/en-us/download/details.aspx?id=34595)
 
 - Check your PowerShell modules path
 
-    > $env:PSModulePath
+{% highlight PowerShell %}
+$env:PSModulePath
+{% endhighlight %}
 
 - If the modules directory does not exist, create it (C:\Users\paweloczadly\Documents\WindowsPowerShell\Modules)
 
 - Clone the [posh-gvm](https://github.com/flofreud/posh-gvm) repository to the modules directory:
 
-    > git clone https://github.com/flofreud/posh-gvm
+{% highlight PowerShell %}
+git clone https://github.com/flofreud/posh-gvm
+{% endhighlight %}
 
 - Import posh-gvm module
 
-    > Import-Module posh-gvm
+{% highlight PowerShell %}
+Import-Module posh-gvm
+{% endhighlight %}
 
 ## Verification
 
