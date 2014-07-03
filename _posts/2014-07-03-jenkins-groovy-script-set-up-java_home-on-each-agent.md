@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Set up JAVA_HOME on Jenkins agents using Groovy script"
+title: "Jenkins Groovy script: Set up JAVA_HOME on each agent"
 category: dev
 tags: [jenkins, groovy]
 ---
