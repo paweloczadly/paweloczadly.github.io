@@ -18,4 +18,4 @@ You can have prepared your own box with preconfigured chef. In this case there i
 
 To disable it, open your **.kitchen.yml** file and add the following line to the **provisioner** section:
 
-  require_chef_omnibus: true
+    require_chef_omnibus: true
