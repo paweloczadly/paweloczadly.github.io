@@ -15,8 +15,9 @@ group: navigation
         - Groovy
         - Build tools (Gradle, Maven)
     - Devops:
-        - CI
-        - Chef
+        - Continuous delivery
+        - Continuous integration
+        - Infrastructure as a code
     - Open source projects
     - Mobile
     - Tech news
