@@ -6,7 +6,7 @@ tags: [gradle, groovy, spock]
 ---
 {% include JB/setup %}
 
-## What is tooling API
+## What is tooling API?
 
 Gradle tooling API allows you to interact with Gradle directly. You can use it to run your tasks, to test output and other results.
 

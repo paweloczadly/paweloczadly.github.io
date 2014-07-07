@@ -7,7 +7,7 @@ group: navigation
 {% include JB/setup %}
 
 
-- Software Engineer in [hybris](hybris.com)
+- Software Engineer in [hybris](http://hybris.com/en/)
 - Opponent of time waste meetings ;)
 - Interests:
     - Software engineering:
