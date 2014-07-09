@@ -19,7 +19,7 @@ Let's assume, we have the following structure:
         └── file2.gradle
 
 
-the main build script (build.gradle file) will use files included in **sub** directory to import some variables and methods. To do this, we have to tell Gradle to have a look to these files. Then we have to tasks which list variables and methods available in other build scripts:
+the main build script (build.gradle file) will use files included in **sub** directory to import some variables and methods. To do this, we have to tell Gradle to have a look to these files. In the main script we have two tasks which list variables and methods available in other build scripts:
 
 {% highlight groovy %}
 fileTree('sub').each { apply from: "${it}" }
@@ -35,7 +35,7 @@ task listMethods << {
 }
 {% endhighlight %}
 
-Then inside the **sub/file1.gradle** let's define var1 variable and m1 closure in ext:
+Then inside the **sub/file1.gradle** let's define **var1** variable and **m1** closure in ext:
 
 {% highlight groovy %}
 ext.var1 = 'val1'
