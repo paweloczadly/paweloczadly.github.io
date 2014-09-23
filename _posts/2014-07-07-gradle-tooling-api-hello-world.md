@@ -14,7 +14,7 @@ Gradle tooling API allows you to interact with Gradle directly. You can use it t
 
 In this article I would like to present the simplest example of usage Gradle tooling API - displaying available tasks. Let's assume we have the following build file:
 
-{% highlight gradle %}
+{% highlight groovy %}
 apply plugin: 'groovy'
 apply plugin: 'idea'
 

@@ -21,7 +21,7 @@ Let's assume, we have the following structure:
 
 the main build script (build.gradle file) will use files included in **sub** directory to import some variables and methods. To do this, we have to tell Gradle to have a look to these files. In the main script we have two tasks which list variables and methods available in other build scripts:
 
-{% highlight gradle %}
+{% highlight groovy %}
 fileTree('sub').each { apply from: "${it}" }
 
 task listVars << {
@@ -37,7 +37,7 @@ task listMethods << {
 
 Then inside the **sub/file1.gradle** let's define **var1** variable and **m1** closure in ext:
 
-{% highlight gradle %}
+{% highlight groovy %}
 ext.var1 = 'val1'
 
 ext.m1 = {
@@ -47,7 +47,7 @@ ext.m1 = {
 
 The **sub/file2.gradle** will look similar:
 
-{% highlight gradle %}
+{% highlight groovy %}
 ext.var2 = 'val2'
 
 ext.m2 = {
@@ -57,13 +57,13 @@ ext.m2 = {
 
 [Gradle ext](http://www.gradle.org/docs/current/dsl/org.gradle.api.plugins.ExtraPropertiesExtension.html) doesn't allow to specify methods inside. However, thanks to Groovy language we can use [closures](http://groovy.codehaus.org/Closures) instead of methods. To pass more than one parameter to the method -> in this case closure, we have to do this in this way:
 
-{% highlight gradle %}
+{% highlight groovy %}
 ext.m3 = { val1, val2 ->
   // body...
 }
 {% endhighlight %}
 
 and invoke it in this way:
-{% highlight gradle %}
+{% highlight groovy %}
 m3('1', '2')
 {% endhighlight %}
