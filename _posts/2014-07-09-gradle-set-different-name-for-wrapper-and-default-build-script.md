@@ -18,7 +18,7 @@ In this post I would like to show similar stuff but present Ant replacement.
 
 Let's create a **build.gradle** with the following content:
 
-{% highlight groovy %}
+{% highlight gradle %}
 task createMyOwnWrapper(type: Wrapper) {
     gradleVersion = '2.0'
     scriptFile = 'ant'
