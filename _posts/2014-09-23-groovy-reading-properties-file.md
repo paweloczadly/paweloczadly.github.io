@@ -37,7 +37,7 @@ class PropertyReader {
 
 Here is my **gradle.properties** file:
 
-{% highlight %}
+{% highlight bash %}
 name = Pawel Oczadly
 page.url = http://paweloczadly.github.io
 {% endhighlight %}
