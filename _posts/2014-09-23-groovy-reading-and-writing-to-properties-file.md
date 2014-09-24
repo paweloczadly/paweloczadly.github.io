@@ -42,8 +42,10 @@ class PropertyReader {
 
 Here is the example of **gradle.properties** file:
 
-  name = Pawel Oczadly
-  page.url = http://paweloczadly.github.io
+{% highlight bash %}
+name = Pawel Oczadly
+page.url = http://paweloczadly.github.io
+{% endhighlight %}
 
 To read the property just call ```propertyReader.'yourProperty'```. And to update or write new property call ```propertyReader.'yourPropertyKey'('yourPropertyValue')```. Here is the example of usage of PropertyReader class:
 
@@ -62,7 +64,9 @@ assert propertyReader.interests == 'football, climbing, swimming'
 
 After running the above script and refreshing **c:/gradle.properties** file it should contain similar content:
 
-  #Wed Sep 24 08:21:15 CEST 2014
-  name=Pawel Oczadly
-  page.url=http\://paweloczadly.github.io
-  interests=football, climbing, swimming
+{% highlight bash %}
+#Wed Sep 24 08:21:15 CEST 2014
+name=Pawel Oczadly
+page.url=http\://paweloczadly.github.io
+interests=football, climbing, swimming
+{% endhighlight %}
