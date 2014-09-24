@@ -6,8 +6,6 @@ tags: [groovy]
 ---
 {% include JB/setup %}
 
-## Dupa
-
 Last time I had to use **gradle.properties** file in my **Spock** tests. It contained some settings of the project which had to be read and assert.
 
 To implement this I decided to use Groovy's MOP capabilities (propertyMissing method). I wrote the following class which allow to read properties store in key=value notation:
