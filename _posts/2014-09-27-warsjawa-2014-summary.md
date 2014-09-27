@@ -16,6 +16,8 @@ I like this form of the conference. I had possibility to learn something new and
 
 Fingers crossed for the next edition! :)
 
+[link](http://warsjawa.pl/)
+
 ## Notes
 
 I chose the following workshops and here are my notes from them. Please be aware that you can find some mess in Polish and English inside this files :)
