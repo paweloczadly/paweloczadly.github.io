@@ -6,7 +6,7 @@ tags: [spring, java]
 ---
 {% include JB/setup %}
 
-## Spring-core: Dependency Injection using XML
+## Intro
 
 This series contains my notes to Spring core exam. I will try update it continuously. In this post I will focus on ioc container, xml configuration and bean creation.
 
