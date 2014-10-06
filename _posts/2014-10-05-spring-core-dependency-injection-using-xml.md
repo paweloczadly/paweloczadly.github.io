@@ -15,7 +15,7 @@ This series contains my notes to Spring core exam. I will try update it continuo
 Let's suppose that we have the following class:
 
 {% highlight java %}
-package pl.oczadly;
+package pl.oczadly.account.model;
 
 class Account {
 
@@ -47,6 +47,48 @@ We will get the following exception:
 ```
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'account' defined in class path resource [application-context.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [pl.oczadly.account.model.Account]: No default constructor found;
 ```
+
+## One argument in two-args constructor
+
+- **Problem**: a class contains two or more arguments in constructor. In xml bean is specified but not all constructor-args are declared.
+- **Result**: UnsatisfiedDependencyException
+- Example:
+
+Let's modify the Account class by adding to it **owner** property and putting it into constructor. Now, it looks like this:
+
+{% highlight java %}
+package pl.oczadly.account.model;
+
+class Account {
+
+  private String owner;
+
+  private int number;
+
+  public Account(String owner, int number) {
+    this.owner = owner;
+    this.number = number;
+  }
+
+  // setters and getters...
+
+}
+{% endhighlight %}
+
+Here is bean definition in xml:
+
+{% highlight xml %}
+<bean id="account" class="pl.oczadly.account.model.Account">
+  <constructor-arg value="123456789" />
+</bean>
+{% endhighlight %}
+
+Output:
+
+```
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'account1' defined in class path resource [application-context.xml]: Could not resolve matching constructor (hint: specify index/type/name arguments for simple parameters to avoid type ambiguities)
+```
+
 
 ## Two or more beans with the same id
 
