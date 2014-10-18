@@ -30,7 +30,42 @@ class Account {
 }
 {% endhighlight %}
 
-## No default constructor
+## Quick notes
+
+Quick notes about important things in this chapter
+
+### Two kind of xml contexts
+
+- ```ClassPathXmlApplicationContext```
+
+Usage:
+{% highlight java %}
+// for many config files (context.xml in package pl.oczadly):
+ApplicationContext context1 = new ClassPathXmlApplicationContext("pl/oczadly/context.xml", "pl/oczadly/config/test-context.xml", "file:oracle-infra-config.xml");
+
+// for one:
+ApplicationContext context2 = new ClassPathXmlApplicationContext("context.xml");
+{% endhighlight %}
+- ```FileSystemXmlApplicationContext```
+
+### Creating beans
+
+{% highlight java %}
+// cast required
+ClientService cs1 = (ClientService) context.getBean("clientService");
+
+// since Spring 3.0: no cast required
+ClientService cs2 = context.getBean("clientService", ClientService.class);
+
+// since Spring 3.0: must have unique type
+ClientService cs3 = context.getBean(ClientService.class)
+{% endhighlight %}
+
+## Potential problems
+
+This section contains potential strange questions...
+
+### No default constructor
 
 - **Problem**: bean declaration in xml without constructor injection. However, the class doesn't have default constructor.
 - **Result**: BeanCreationException
@@ -48,7 +83,7 @@ We will get the following exception:
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'account' defined in class path resource [application-context.xml]: Instantiation of bean failed; nested exception is org.springframework.beans.BeanInstantiationException: Could not instantiate bean class [pl.oczadly.account.model.Account]: No default constructor found;
 ```
 
-## One argument in two-args constructor
+### One argument in two-args constructor
 
 - **Problem**: a class contains two or more arguments in constructor. In xml bean is specified but not all constructor-args are declared.
 - **Result**: UnsatisfiedDependencyException
@@ -90,7 +125,7 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 ```
 
 
-## Two or more beans with the same id
+### Two or more beans with the same id
 
 - **Problem**: two beans in xml with the same id
 - **Result**: BeanDefinitionParsingException
@@ -116,7 +151,7 @@ Output:
 Exception in thread "main" org.springframework.beans.factory.parsing.BeanDefinitionParsingException: Configuration problem: Bean name 'account' is already used in this <beans> element
 ```
 
-## Value conversion
+### Value conversion
 
 - **Problem**: specify integer value in double quotes
 - **Result**: NumberFormatException
@@ -151,7 +186,7 @@ Caused by: java.lang.NumberFormatException: For input string: ""123456789""
 </bean>
 {% endhighlight %}
 
-## Creating two instances of Account class
+### Creating two instances of Account class
 
 - **Problem**: declare two Account beans in xml. Then use **getBean(Account.class)**
 - **Result**: NoUniqueBeanDefinitionException
@@ -181,7 +216,7 @@ Then we get the following output:
 Exception in thread "main" org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type [pl.oczadly.account.model.Account] is defined: expected single matching bean but found 2: account1,account2
 ```
 
-## Creating bean with incorrect property
+### Creating bean with incorrect property
 
 - **Problem**: declare a bean with incorrect property
 - **Result**: BeanCreationException
