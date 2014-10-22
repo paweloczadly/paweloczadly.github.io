@@ -3,6 +3,8 @@ layout: post
 title: "Spring core: XML Dependency Injection Advanced features nd Best Practises"
 category: certs
 tags: [spring, java]
+comments: true
+share: true
 ---
 ## Intro
 
