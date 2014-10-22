@@ -4,8 +4,6 @@ title: "Spring core: XML Dependency Injection Advanced features nd Best Practise
 category: certs
 tags: [spring, java]
 ---
-{% include JB/setup %}
-
 ## Intro
 
 This series contains my notes to Spring core exam. I will try update it continuously. In this post I will focus on best practises for ioc container.
