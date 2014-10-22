@@ -3,8 +3,9 @@ layout: post
 title: "Git aliases"
 category: dev
 tags: [git]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

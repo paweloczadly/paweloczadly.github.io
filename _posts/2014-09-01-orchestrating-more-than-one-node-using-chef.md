@@ -3,8 +3,9 @@ layout: post
 title: "Orchestrating more than one node using Chef"
 category: devops
 tags: [chef]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 If you want to provision or update more than one node with Chef, there are two possibilities to do this.
 

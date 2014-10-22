@@ -3,8 +3,9 @@ layout: post
 title: "Jenkins Groovy script: List all jobs"
 category: dev
 tags: [jenkins, groovy]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

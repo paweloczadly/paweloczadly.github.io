@@ -3,8 +3,9 @@ layout: post
 title: "GVM on Windows"
 category: dev
 tags: [groovy, gvm, windows]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## What is GVM
 

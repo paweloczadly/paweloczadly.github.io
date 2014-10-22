@@ -3,8 +3,9 @@ layout: post
 title: "Test Kitchen: Disable Chef omnibuus set up"
 category: devops
 tags: [chef, test-kitchen]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

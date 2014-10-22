@@ -3,8 +3,9 @@ layout: post
 title: "Test Kitchen: Set up IP and redirect port"
 category: devops
 tags: [chef, test-kitchen]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

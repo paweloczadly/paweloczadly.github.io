@@ -3,8 +3,9 @@ layout: post
 title: "Spring-core: Dependency Injection using XML"
 category: certs
 tags: [spring, java]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Intro
 

@@ -3,8 +3,9 @@ layout: post
 title: "Gradle tooling API: hello world"
 category: dev
 tags: [gradle, groovy, spock]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## What is tooling API?
 

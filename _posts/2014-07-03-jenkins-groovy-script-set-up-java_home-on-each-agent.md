@@ -3,8 +3,9 @@ layout: post
 title: "Jenkins Groovy script: Set up JAVA_HOME on each agent"
 category: dev
 tags: [jenkins, groovy]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

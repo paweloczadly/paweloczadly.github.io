@@ -3,8 +3,9 @@ layout: post
 title: "Chef cookbook build pipeline"
 category: devops
 tags: [chef, jenkins]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

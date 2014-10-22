@@ -3,8 +3,9 @@ layout: post
 title: "Packer: build and test your VM images"
 category: devops
 tags: [packer, vagrant]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## What is Packer?
 

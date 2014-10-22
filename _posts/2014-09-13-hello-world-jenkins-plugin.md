@@ -3,8 +3,9 @@ layout: post
 title: "Hello, world Jenkins plugin"
 category: dev
 tags: [jenkins, maven, java, groovy, spock]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Note
 

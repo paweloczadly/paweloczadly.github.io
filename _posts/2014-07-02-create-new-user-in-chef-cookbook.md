@@ -3,8 +3,9 @@ layout: post
 title: "Create new user in Chef cookbook"
 category: devops
 tags: [chef, ruby]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

@@ -3,8 +3,9 @@ layout: post
 title: "Gradle: How to use variables and methods from another Gradle file"
 category: dev
 tags: [gradle, groovy]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 

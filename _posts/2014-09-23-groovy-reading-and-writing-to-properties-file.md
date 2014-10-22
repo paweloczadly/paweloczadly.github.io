@@ -3,8 +3,9 @@ layout: post
 title: "Groovy: reading and writing to properties file"
 category: dev
 tags: [groovy]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 Thanks to Groovy MOP capabilities we can create flexible and readable code. Last time I created PropertyReader class inspired by [MarkupBuilder](http://groovy.codehaus.org/Creating+XML+using+Groovy's+MarkupBuilder) and [XmlSlurper](http://groovy.codehaus.org/Reading+XML+using+Groovy's+XmlSlurper). This class allows to read and write from/to properties files. Data in that file is store in ```key=value``` notation.
 

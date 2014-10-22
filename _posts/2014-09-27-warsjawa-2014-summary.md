@@ -3,8 +3,9 @@ layout: post
 title: "Warsjawa 2014 Summary"
 category: conf
 tags: [scala, akka, ansible]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## General
 

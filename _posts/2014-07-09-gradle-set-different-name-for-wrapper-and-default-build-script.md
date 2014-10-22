@@ -3,8 +3,9 @@ layout: post
 title: "Gradle: set different name for wrapper and default build script"
 category: dev
 tags: [gradle, groovy]
+comments: true
+share: true
 ---
-{% include JB/setup %}
 
 ## Overview
 
