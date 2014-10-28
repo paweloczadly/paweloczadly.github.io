@@ -3,6 +3,8 @@ layout: post
 title: "Run your Node.js app in Docker container"
 category: "dev"
 tags: [node.js, docker]
+comments: true
+share: true
 ---
 
 # Note
