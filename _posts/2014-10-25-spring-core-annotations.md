@@ -8,11 +8,11 @@ share: true
 ---
 # Intro
 
-This series contains my notes to Spring core exam. I will try update it continuously. In this post I will focus on best practises for ioc container.
+This series contains my notes to Spring core exam. I will try update it continuously. In this post I will focus on dependency injection using Spring annotations.
 
 # Quick notes
 
-Quick notes about important things in this chapter
+Quick notes about important things in this chapter.
 
 ## Creating beans using annotations
 

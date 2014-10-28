@@ -12,7 +12,7 @@ This series contains my notes to Spring core exam. I will try update it continuo
 
 ## Quick notes
 
-Quick notes about important things in this chapter
+Quick notes about important things in this chapter.
 
 ### Externalizing values into properties files
 
