@@ -7,36 +7,30 @@ comments: true
 share: true
 ---
 
-# Note
+# Overview
 
-This post is still in progress. I will update it soon. Please, come back in the future. Sorry, for inconvenience...
+In this post we will create a Docker container for Node.js. Then we can deploy it very easily to production.
 
 # Node.js microservice
+
+For that example we will create a microservice which displays hostname of the application.
 
 {% highlight javascript linenos %}
 var http = require('http')
 var os = require('os')
 
-var url = process.argv[3]
 var port = process.argv[2]
-var body = ''
-
-var request = http.get(url, function(res) {
-  res.on('data', function (chunk) {
-    body = chunk
-  });
-})
 
 var server = http.createServer(function (req, resp) {
 	resp.writeHead(200, {'Content-Type': 'text/plain'})
-  resp.end('I am: ' + os.hostname() + '\n'
-         + 'Requesting: ' + url + '\n'
-         + 'Response: ' + body.toString().split('\n')[0])
+  resp.end('I am: ' + os.hostname() + '\n')
 }).listen(port)
 console.log('Server running at http://127.0.0.1:' + port)
 {% endhighlight %}
 
 # Dockerfile
+
+We will use nodejs image provided by the [Dockerfile](http://dockerfile.github.io) group.
 
 {% highlight bash linenos %}
 FROM dockerfile/nodejs
@@ -55,4 +49,4 @@ WORKDIR "/myapp"
 
 - Run container:
 
-`docker run -d -p 1337:1337 --name myapp myapp node /myapp/app.js 1337 http://127.0.0.1:1337`
+`docker run -d -p 1337:1337 --name myapp myapp node /myapp/app.js 1337`
