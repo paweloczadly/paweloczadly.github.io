@@ -3,8 +3,8 @@
 - title: home
   url: /
 
-# - title: archive
-#   url: /archive/
+- title: archive
+  url: /archive/
 
 - title: categories
   url: /categories/
