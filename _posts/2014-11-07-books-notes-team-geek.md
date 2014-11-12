@@ -44,3 +44,9 @@ More: page 12
 > The more you are open to influence, the more you are able to influence.
 
 More: page 21
+
+## Radical changes
+
+>  If radical changes happen to the environment or business plan (say, at a startup company), software team members need to be honest with themselves and reevaluate whether the mission statement still makes sense.
+
+More: page 37
