@@ -33,13 +33,15 @@ Containers are stored in: `/var/lib/docker/container`
 
 ## Running containers
 
-> -i flag keeps STDIN open from the container
+> The **-i** flag keeps STDIN open from the container
 
-> -t assigns a pseudo-tty to the container we're about to create. This provides us with an interactive shell in the new container.
+> The **-t** flag assigns a pseudo-tty to the container we're about to create. This provides us with an interactive shell in the new container.
 
 ## Displaying containers
 
 > By default, when we run just docker ps, we will only see the running container. When we specify the **-a** flag, the docker ps command will show us all containers, both stopped and running.
+
+> The **-q** flag only returns container IDs.
 
 ## Working with the container's logs
 
@@ -74,3 +76,9 @@ Thanks to that, it is possible to log in to the container:
     1 root     /bin/consul agent -config-dir=/config -server -bootstrap -advertise 10.0.2.15
     30 root     /bin/bash
     35 root     ps ax
+
+## Removing containers
+
+There is a workaround to remove all containers:
+
+    $ docker rm -f $(docker ps -aq)
