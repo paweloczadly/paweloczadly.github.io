@@ -29,6 +29,8 @@ share: true
 
 > The container has a network, IP address, and a bridge interface to talk to the local host.
 
+Containers are stored in: `/var/lib/docker/container`
+
 ## Running containers
 
 > -i flag keeps STDIN open from the container
