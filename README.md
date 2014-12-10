@@ -10,10 +10,10 @@ It is possible to run the blog from Docker container.
 
 - Build it:
 ```
-sudo docker build --no-cache -t paweloczadly/blog .
+docker build -t paweloczadly/blog .
 ```
 
 - Execute it:
 ```
-docker run -t -i -p 4000:4000 paweloczadly/blog
+docker run --name blog -v "$PWD:/blog" -dp 4000:4000 paweloczadly/blog
 ```
