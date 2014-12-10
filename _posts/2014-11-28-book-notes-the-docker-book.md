@@ -305,3 +305,57 @@ During restarting a container, an IP address is updated.
 Docker enables the communication between containers with the help of links.
 
 > The `--link` flag creates a parent-child link between two containers. The flag takes two arguments: the container name to link and an alias for the link.
+
+> The link gives the parent container the ability to communicate with the child container and shares some connection details with it to help you configure applications to make use of the link.
+
+During linking containers, there is no need to expose ports. The parent container is allowed to communicate to any open ports on the child container.
+
+It is possible to link multiple containers together. For example, there is a container with Redis database and other containers (different applications) connect to it and read/write the data.
+
+> Docker links populate information about the parent container in two places:
+
+- The `/etc/hosts` file
+- Environment variables with the alias prefix
+
+For example the container is connected to the **db** container:
+
+    root@3165dc6df1bb:/# cat /etc/hosts
+    172.17.0.14	3165dc6df1bb
+    ...
+    172.17.0.13	db
+
+It is possible to ping the **db** container as well:
+
+    root@3165dc6df1bb:/# ping db
+    PING db (172.17.0.13) 56(84) bytes of data.
+    64 bytes from db (172.17.0.13): icmp_seq=1 ttl=64 time=0.079 ms
+    64 bytes from db (172.17.0.13): icmp_seq=2 ttl=64 time=0.080 ms
+    64 bytes from db (172.17.0.13): icmp_seq=3 ttl=64 time=0.074 ms
+
+Environment variables (these with the DB prefix comes with the linked container):
+
+    root@3165dc6df1bb:/# env
+    HOSTNAME=3165dc6df1bb
+    ...
+    DB_NAME=/webapp/db
+    DB_PORT_6379_TCP_PORT=6379
+    DB_PORT=tcp://172.17.0.13:6379
+    DB_PORT_6379_TCP=tcp://172.17.0.13:6379
+    DB_ENV_REFRESHED_AT=2014-06-01
+    DB_PORT_6379_TCP_ADDR=172.17.0.13
+    DB_PORT_6379_TCP_PROTO=tcp
+    ...
+
+These environment variables can be used in applications to consistently link between containers. For example in Ruby:
+
+{% highlight ruby %}
+uri = URI.parse(ENV['DB_PORT'])
+{% endhighlight %}
+
+On the other hand DNS and the information from `/etc/hosts` can be used in applications. For example in Ruby:
+
+{% highlight ruby %}
+redis = Redis.new(:host => 'db', :port => '6379')
+{% endhighlight %}
+
+> Since Docker version 1.3 if the linked container is restarted then the IP address in the `etc/hosts` file will be updated with the new IP address.
