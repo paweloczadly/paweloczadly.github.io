@@ -123,6 +123,8 @@ There is a workaround to remove all containers:
 
 > Each instruction, for example FROM, should be in upper-case
 
+> Each instruction adds a new layer to the image and then commits the image.
+
 ### RUN
 
 > By default, the RUN instruction executes inside a shell using the command wrapper /bin/sh -c.
@@ -131,7 +133,7 @@ There is a workaround to remove all containers:
 
 > You can also specify the CMD instruction without an array, in which case Docker will prepend /bin/sh -c to the command.
 
-> You can only specify one CMD instruction in a Dockerfile. If more than one is specified, then the last CMD instruction will be used.
+> You can **only specify** one CMD instruction in a Dockerfile. If more than one is specified, then the last CMD instruction will be used.
 
 > If you need to run multiple processes or commands as part of starting a container you should use a service management tool like **Supervisor**.
 
@@ -176,6 +178,12 @@ The default user is **root** if it is not specified.
 
 > Volumes persist until no containers use them.
 
+> We can also specify the read/write status of the destination by adding either **rw** or **ro** after that destination.
+
+example:
+
+    docker run -v $PWD:/opt:ro
+
 ### ADD
 
 > If the destination ends in a /, then it considers the source a directory.
@@ -193,3 +201,7 @@ example:
 > The key difference is that the COPY instruction is purely focused on copying local files from the build context and does not have any extraction or decompression capabilities.
 
 > You cannot copy anything that is outside of this directory, because the build context is uploaded to the Docker daemon, and the copy takes place there.
+
+## Local Docker registry
+
+> Since Docker 1.3.1 you need to add the flag --insecure_registry <url-to-registry:5000> to your Docker daemon startups flags and restart to use a local registry.
