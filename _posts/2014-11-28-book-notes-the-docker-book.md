@@ -29,7 +29,40 @@ share: true
 
 > The container has a network, IP address, and a bridge interface to talk to the local host.
 
-Containers are stored in: `/var/lib/docker/container`
+Containers are stored in: `/var/lib/docker/container`.
+
+The ```docker inspect``` command displays information about Docker container.
+
+Example:
+
+    $ docker inspect redis
+    [{
+      "AppArmorProfile": "",
+      "Args": [],
+      "Config": {
+        "AttachStderr": false,
+        "AttachStdin": false,
+        "AttachStdout": false,
+        "Cmd": null,
+        "CpuShares": 0,
+        "Cpuset": "",
+        "Domainname": "",
+        "Entrypoint": [
+        "/usr/bin/redis-server"
+        ],
+        "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+        "REFRESHED_AT=2014-06-01"
+        ],
+        "ExposedPorts": {
+          "6379/tcp": {}
+        },
+    ...
+
+To inspect only specific information (e.g. IP address), run the following:
+
+    docker inspect -f '{ { .NetworkSettings.IPAddress } }' redis
+    172.17.0.10
 
 ## Running containers
 
@@ -205,3 +238,64 @@ example:
 ## Local Docker registry
 
 > Since Docker 1.3.1 you need to add the flag --insecure_registry <url-to-registry:5000> to your Docker daemon startups flags and restart to use a local registry.
+
+## Docker network
+
+Docker creates it's own network during installation.
+
+> Every Docker container is assigned an IP address, provided through an interface created when we installed Docker. That interface is called **docker0**
+
+> The **docker0** interface is a virtual Ethernet bridge that connects our containers and the local host network.
+
+interfaces:
+
+    $ ifconfig
+    docker0   Link encap:Ethernet  HWaddr 56:84:7a:fe:97:99  
+    inet addr:172.17.42.1  Bcast:0.0.0.0  Mask:255.255.0.0
+    inet6 addr: fe80::5484:7aff:fefe:9799/64 Scope:Link
+    ...
+
+    eth0      ...
+
+    IPs:
+
+    $ ip a show docker0
+    3: docker0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP
+    link/ether 56:84:7a:fe:97:99 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.42.1/16 scope global docker0
+    valid_lft forever preferred_lft forever
+    inet6 fe80::5484:7aff:fefe:9799/64 scope link
+    valid_lft forever preferred_lft forever
+
+The ```docker0``` interface has private IP addresses in between **172.16-172.30**.
+
+The gateway address for the Docker network and all Docker container is **172.17.42.1**.
+
+> Every time Docker creates a container, it creates a pair of peer interfaces that are like opposite ends of a pipe.It gives one of the peers to the container to become its **eth0** interface and keeps the other peer, with unique name like **vethec6a**, out on the host machine.
+
+When five containers are started on a host:
+
+    $ ifconfig
+    veth2888a15 Link encap:Ethernet  HWaddr 46:10:09:52:99:50  
+    inet6 addr: fe80::4410:9ff:fe52:9950/64 Scope:Link
+    ...
+
+    veth35b2154 Link encap:Ethernet  HWaddr de:c4:9d:28:25:ce  
+    inet6 addr: fe80::dcc4:9dff:fe28:25ce/64 Scope:Link
+    ...
+
+    veth5f7d0ef Link encap:Ethernet  HWaddr 96:cc:19:7b:1e:c8  
+    inet6 addr: fe80::94cc:19ff:fe7b:1ec8/64 Scope:Link
+    ...
+
+    vethe58621d Link encap:Ethernet  HWaddr 2e:29:cd:9f:c6:dc  
+    inet6 addr: fe80::2c29:cdff:fe9f:c6dc/64 Scope:Link
+    ...
+
+    vethfbf8c82 Link encap:Ethernet  HWaddr 82:d6:fe:a5:4e:d0  
+    inet6 addr: fe80::80d6:feff:fea5:4ed0/64 Scope:Link
+...
+
+> You can think of a **veth** interface as one end of a virtual network cable.
+
+During restarting a container, an IP address is updated.
