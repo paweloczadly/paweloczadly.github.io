@@ -21,7 +21,7 @@ share: true
 
 > Docker runs as a root-privileged daemon process to allow it to handle operations that can't be executed by normal users.
 
-> The daemon listens on a Unix socket at **/var/run/docker.sock** for incoming Docker requests.
+> The daemon listens on a Unix socket at `/var/run/docker.sock` for incoming Docker requests.
 
 > Any user that belongs to the docker group can run Docker without needing to use the sudo command.
 
@@ -31,7 +31,7 @@ share: true
 
 Containers are stored in: `/var/lib/docker/container`.
 
-The ```docker inspect``` command displays information about Docker container.
+The `docker inspect` command displays information about Docker container.
 
 Example:
 
@@ -66,25 +66,25 @@ To inspect only specific information (e.g. IP address), run the following:
 
 ## Running containers
 
-> The **-i** flag keeps STDIN open from the container
+> The `-i` flag keeps STDIN open from the container
 
-> The **-t** flag assigns a pseudo-tty to the container we're about to create. This provides us with an interactive shell in the new container.
+> The `-t` flag assigns a pseudo-tty to the container we're about to create. This provides us with an interactive shell in the new container.
 
 ## Displaying containers
 
-> By default, when we run just docker ps, we will only see the running container. When we specify the **-a** flag, the docker ps command will show us all containers, both stopped and running.
+> By default, when we run just docker ps, we will only see the running container. When we specify the `-a` flag, the docker ps command will show us all containers, both stopped and running.
 
-> The **-q** flag only returns container IDs.
+> The `-q` flag only returns container IDs.
 
 ## Working with the container's logs
 
-> You can get last ten lines of a log by using **docker logs --tail 10**
+> You can get last ten lines of a log by using `docker logs --tail 10`
 
-> To make debugging a little easier, we can also add the **-t** flag to prefix our log entries with timestamps.
+> To make debugging a little easier, we can also add the `-t` flag to prefix our log entries with timestamps.
 
 ## Inspecting the container's processes
 
-> To inspect the processes running inside the container, we can use **docker top** command.
+> To inspect the processes running inside the container, we can use `docker top` command.
 
 Example:
 
@@ -99,7 +99,7 @@ Example:
 
 ## Running a process inside a container
 
-> We can also run additional process inside our containers using **docker exec** command.
+> We can also run additional process inside our containers using `docker exec` command.
 
 Thanks to that, it is possible to log in to the container:
 
@@ -134,7 +134,7 @@ There is a workaround to remove all containers:
 
 ## Credentials for Docker hub
 
-> Your credentials will be stored in the $HOME/.dockercfg file.
+> Your credentials will be stored in the `$HOME/.dockercfg` file.
 
 ## Dockerfile workspace
 
@@ -154,35 +154,35 @@ There is a workaround to remove all containers:
 
 ## Instructions in Dockerfile
 
-> Each instruction, for example FROM, should be in upper-case
+> Each instruction, for example `FROM`, should be in upper-case
 
 > Each instruction adds a new layer to the image and then commits the image.
 
 ### RUN
 
-> By default, the RUN instruction executes inside a shell using the command wrapper /bin/sh -c.
+> By default, the `RUN` instruction executes inside a shell using the command wrapper `/bin/sh -c`.
 
 ### CMD
 
-> You can also specify the CMD instruction without an array, in which case Docker will prepend /bin/sh -c to the command.
+> You can also specify the `CMD` instruction without an array, in which case Docker will prepend `/bin/sh -c` to the command.
 
-> You can **only specify** one CMD instruction in a Dockerfile. If more than one is specified, then the last CMD instruction will be used.
+> You can **only specify** one `CMD` instruction in a Dockerfile. If more than one is specified, then the last CMD instruction will be used.
 
 > If you need to run multiple processes or commands as part of starting a container you should use a service management tool like **Supervisor**.
 
 ### ENTRYPOINT
 
-> The ENTRYPOINT instruction provides a command that isn't as easily overridden. Instead, any arguments we specify on the docker run command line will be passed as arguments to the command specified in the ENTRYPOINT.
+> The `ENTRYPOINT` instruction provides a command that isn't as easily overridden. Instead, any arguments we specify on the docker run command line will be passed as arguments to the command specified in the `ENTRYPOINT`.
 
-> If required at runtime, you can override the ENTRYPOINT instruction using the docker run command with --entrypoint flag.
+> If required at runtime, you can override the `ENTRYPOINT` instruction using the docker run command with `--entrypoint` flag.
 
 ### ENV
 
-You can also pass environment variables on the docker run command line using the -e flag.
+You can also pass environment variables on the docker run command line using the `-e` flag.
 
 ### USER
 
-> The USER instruction specifies a user that the image should be run as;
+> The `USER` instruction specifies a user that the image should be run as;
 
 example:
 
@@ -199,7 +199,7 @@ example:
     USER user:gid
     USER uid:group
 
-> You can also override this at runtime by specifying the -u flag with the docker run command.
+> You can also override this at runtime by specifying the `-u` flag with the docker run command.
 
 The default user is **root** if it is not specified.
 
@@ -219,7 +219,7 @@ example:
 
 ### ADD
 
-> If the destination ends in a /, then it considers the source a directory.
+> If the destination ends in a `/`, then it considers the source a directory.
 
 > If a tar archive (valid archive types include gzip, bzip2, xz) is specified as the source file, then Docker will automatically unpack it for you.
 
@@ -231,21 +231,21 @@ example:
 
 ### COPY
 
-> The key difference is that the COPY instruction is purely focused on copying local files from the build context and does not have any extraction or decompression capabilities.
+> The key difference is that the `COPY` instruction is purely focused on copying local files from the build context and does not have any extraction or decompression capabilities.
 
 > You cannot copy anything that is outside of this directory, because the build context is uploaded to the Docker daemon, and the copy takes place there.
 
 ## Local Docker registry
 
-> Since Docker 1.3.1 you need to add the flag --insecure_registry <url-to-registry:5000> to your Docker daemon startups flags and restart to use a local registry.
+> Since Docker 1.3.1 you need to add the flag `--insecure_registry <url-to-registry:5000>` to your Docker daemon startups flags and restart to use a local registry.
 
 ## Docker network
 
 Docker creates it's own network during installation.
 
-> Every Docker container is assigned an IP address, provided through an interface created when we installed Docker. That interface is called **docker0**
+> Every Docker container is assigned an IP address, provided through an interface created when we installed Docker. That interface is called `docker0`
 
-> The **docker0** interface is a virtual Ethernet bridge that connects our containers and the local host network.
+> The `docker0` interface is a virtual Ethernet bridge that connects our containers and the local host network.
 
 interfaces:
 
@@ -267,11 +267,11 @@ interfaces:
     inet6 fe80::5484:7aff:fefe:9799/64 scope link
     valid_lft forever preferred_lft forever
 
-The ```docker0``` interface has private IP addresses in between **172.16-172.30**.
+The `docker0` interface has private IP addresses in between **172.16-172.30**.
 
 The gateway address for the Docker network and all Docker container is **172.17.42.1**.
 
-> Every time Docker creates a container, it creates a pair of peer interfaces that are like opposite ends of a pipe.It gives one of the peers to the container to become its **eth0** interface and keeps the other peer, with unique name like **vethec6a**, out on the host machine.
+> Every time Docker creates a container, it creates a pair of peer interfaces that are like opposite ends of a pipe.It gives one of the peers to the container to become its `eth0` interface and keeps the other peer, with unique name like `vethec6a`, out on the host machine.
 
 When five containers are started on a host:
 
@@ -296,6 +296,12 @@ When five containers are started on a host:
     inet6 addr: fe80::80d6:feff:fea5:4ed0/64 Scope:Link
 ...
 
-> You can think of a **veth** interface as one end of a virtual network cable.
+> You can think of a `veth` interface as one end of a virtual network cable.
 
 During restarting a container, an IP address is updated.
+
+## Linking Docker containers
+
+Docker enables the communication between containers with the help of links.
+
+> The `--link` flag creates a parent-child link between two containers. The flag takes two arguments: the container name to link and an alias for the link.
