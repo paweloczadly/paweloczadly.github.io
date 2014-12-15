@@ -31,6 +31,8 @@ share: true
 
 Containers are stored in: `/var/lib/docker/container`.
 
+> This location must be a real filesystem rather than mount point like layers in a Docker image.
+
 The `docker inspect` command displays information about Docker container.
 
 Example:
@@ -359,3 +361,7 @@ redis = Redis.new(:host => 'db', :port => '6379')
 {% endhighlight %}
 
 > Since Docker version 1.3 if the linked container is restarted then the IP address in the `etc/hosts` file will be updated with the new IP address.
+
+## Privileged flag
+
+> The `--privileged` flag is special and enables Docker's privileged mode. Privileged mode allows us to run containers with (almost) all the capabilities of their host machine, including kernel features and device access. 
