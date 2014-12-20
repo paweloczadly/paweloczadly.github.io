@@ -72,6 +72,22 @@ To inspect only specific information (e.g. IP address), run the following:
 
 > The `-t` flag assigns a pseudo-tty to the container we're about to create. This provides us with an interactive shell in the new container.
 
+> Docker also comes with a command line option called `--cidfile` that captures the container's ID and stores it in a file specified in the `--cidfile` option.
+
+Example:
+
+    $ docker run -v $PWD:/data/ --name blog --cidfile=dupa.txt paweloczadly/jekyll
+    Configuration file: /data/_config.yml
+    Source: /data
+    Destination: /var/www/html
+    Generating...
+    Build Warning: Layout 'nil' requested in atom.xml does not exist.
+    Build Warning: Layout 'nil' requested in rss.xml does not exist.
+    done.
+    Auto-regeneration: disabled. Use --watch to enable.
+    $ cat dupa.txt
+    0bc117eca02bcad8bfa7f29ee50f4938b879165fe2133c693f7fe9f3f7a92297%  
+
 ## Displaying containers
 
 > By default, when we run just docker ps, we will only see the running container. When we specify the `-a` flag, the docker ps command will show us all containers, both stopped and running.
@@ -219,6 +235,15 @@ example:
 
     docker run -v $PWD:/opt:ro
 
+> Volumes live on your Docker host, in the `/var/lib/docker/volumes` directory.
+
+> You can identify the location of specific volumes using the `docker inspect` command; for example, `docker inspect -f "{{ .Volumes }}"`
+
+example:
+
+    $ docker inspect -f "{ { .Volumes } }" blog
+    map[/data:/Users/paweloczadly/dev/docker/06-building-services-with-docker/james_blog /var/www/html:/mnt/sda1/var/lib/docker/vfs/dir/54decec9f70e079bdff474ec4f98737fb8106e52c1c1e04bc67dabd3b0f49a9c]
+
 ### ADD
 
 > If the destination ends in a `/`, then it considers the source a directory.
@@ -364,4 +389,4 @@ redis = Redis.new(:host => 'db', :port => '6379')
 
 ## Privileged flag
 
-> The `--privileged` flag is special and enables Docker's privileged mode. Privileged mode allows us to run containers with (almost) all the capabilities of their host machine, including kernel features and device access. 
+> The `--privileged` flag is special and enables Docker's privileged mode. Privileged mode allows us to run containers with (almost) all the capabilities of their host machine, including kernel features and device access.
