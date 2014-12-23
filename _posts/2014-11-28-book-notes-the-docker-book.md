@@ -142,6 +142,14 @@ There is a workaround to remove all containers:
 
 > Docker next layers a root filesystem, rootfs, on top of the boot filesystem. This rootfs can be one or more operating systems (e.g., a Debian or Ubuntu filesystem).
 
+## Killing process in a container
+
+It is possible to send a signal to a Docker container to kill a process.
+
+Example:
+
+    $ docker kill -s <signal> <container>
+
 ## Listing Docker images
 
 > Each repository can contain multiple images (e.g., the ubuntu repository contains images for Ubuntu 12.04, 12.10, 13.04, 13.10, and 14.04).
