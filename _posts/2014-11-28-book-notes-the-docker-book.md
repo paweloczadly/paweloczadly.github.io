@@ -142,7 +142,7 @@ There is a workaround to remove all containers:
 
 > Docker next layers a root filesystem, rootfs, on top of the boot filesystem. This rootfs can be one or more operating systems (e.g., a Debian or Ubuntu filesystem).
 
-## Killing process in a container
+## Killing a process in a container
 
 It is possible to send a signal to a Docker container to kill a process.
 
