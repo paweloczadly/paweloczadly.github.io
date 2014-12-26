@@ -39,6 +39,9 @@ ADD app.js /myapp/app.js
 
 EXPOSE 1337
 WORKDIR "/myapp"
+
+ENTRYPOINT ["node", "app.js", "1337"]
+CMD []
 {% endhighlight %}
 
 # Building and running
@@ -49,4 +52,4 @@ WORKDIR "/myapp"
 
 - Run container:
 
-`docker run -d -p 1337:1337 --name myapp myapp node /myapp/app.js 1337`
+`docker run -d -p 1337:1337 --name myapp`
