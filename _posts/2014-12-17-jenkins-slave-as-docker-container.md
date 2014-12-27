@@ -33,6 +33,8 @@ RUN apt-get install -yqq openjdk-7-jdk
 VOLUME /var/lib/docker
 
 ADD http://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/1.22/swarm-client-1.22-jar-with-dependencies.jar /var/lib/jenkins/swarm-client.jar
+ADD start.sh /var/lib/jenkins/start.sh
+RUN chmod +x /var/lib/jenkins/start.sh
 
 WORKDIR /var/lib/jenkins
 ENTRYPOINT ["/var/lib/jenkins/start.sh"]
@@ -44,8 +46,9 @@ Description:
 - line **7** installs openjdk
 - line **9** - creates Docker volume for `/var/lib/docker` directory. It is required for sharing Docker containers between the container and the host.
 - line **11** - downloads Jenkins Swarm client
-- line **13** - sets current directory to `/var/lib/jenkins`
-- line **14** - runs the start script
+- line **12** - **13** - add the start script and make it executable
+- line **15** - sets current directory to `/var/lib/jenkins`
+- line **16** - runs the start script
 
 Then, let's create **start.sh** script which will run 'Docker in Docker' and start the Jenkins slave.
 
@@ -111,5 +114,50 @@ append "-name" $JENKINS_SLAVE_NAME
 append "-username" $JENKINS_USERNAME
 append "-password" $JENKINS_PASSWORD
 
-java -jar $JENKINS_HOME/swarm-slave.jar $OPTS
+java -jar $JENKINS_HOME/swarm-client.jar $OPTS
 {% endhighlight %}
+
+Description:
+
+- lines **4** - **35** configures Docker in Docker and start the Docker daemon. For further details, please have a look at "Docker in Docker" Github repository or chapter 5th in "The Docker Book".
+- lines **38** - **43** a function which configures parameters for Jenkins Swarm client.
+- lines **47** - **50** check if MASTER_URL is configured.
+- lines **54** - **60** configure other options for Jenkins Swarm client.
+- line **62** runs Jenkins Swarm client.
+
+# Demo
+
+After you build the image, you have to run the container with `--privileged` flag
+
+    $ docker run --privileged -ti -e MASTER_URL=http://my.jenkins.com:8080 jks
+    /proc/self/fd /var/lib/jenkins
+    /var/lib/jenkins
+    INFO[0000] +job serveapi(unix:///var/run/docker.sock)
+    INFO[0000] +job init_networkdriver()
+    INFO[0000] Listening for HTTP on unix (/var/run/docker.sock)
+    INFO[0000] -job init_networkdriver() = OK (0)
+    INFO[0000] Loading containers: start.
+
+    INFO[0000] Loading containers: done.
+    INFO[0000] docker daemon: 1.4.1 5bc2ff8; execdriver: native-0.2; graphdriver: aufs
+    INFO[0000] +job acceptconnections()
+    INFO[0000] -job acceptconnections() = OK (0)
+    Discovering Jenkins master
+    Attempting to connect to http://my.jenkins.com:8080/ 3549a2c2-b7ae-44ab-8037-e1e402495258
+    Could not obtain CSRF crumb. Response code: 404
+    Dec 27, 2014 3:39:00 PM hudson.remoting.jnlp.Main createEngine
+    INFO: Setting up slave: 687b092b6b14
+    Dec 27, 2014 3:39:00 PM hudson.remoting.jnlp.Main$CuiListener <init>
+    INFO: Jenkins agent is running in headless mode.
+    Dec 27, 2014 3:39:00 PM hudson.remoting.jnlp.Main$CuiListener status
+    INFO: Locating server among [http://my.jenkins.com:8080/]
+    Dec 27, 2014 3:39:01 PM hudson.remoting.jnlp.Main$CuiListener status
+    INFO: Connecting to acid-jkm.yrdrt.fra.hybris.com:42534
+    Dec 27, 2014 3:39:01 PM hudson.remoting.jnlp.Main$CuiListener status
+    INFO: Handshaking
+    Dec 27, 2014 3:39:02 PM hudson.remoting.jnlp.Main$CuiListener status
+    INFO: Connected
+
+# Conclusion
+
+Thanks to that setup we have immutable Jenkins slaves. It is possible to extend it by installing other tools and frameworks. Moreover, it is very easy to remove the slave and create it again. To log in to debug why the Jenkins job fails on the Jenkins slave, just use `docker exec -ti <container-id> /bin/bash`
