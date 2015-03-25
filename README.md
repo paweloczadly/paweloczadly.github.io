@@ -15,5 +15,5 @@ docker build -t paweloczadly/blog .
 
 - Execute it:
 ```
-docker run --name blog -v "$PWD:/blog" -dp 4000:4000 paweloczadly/blog
+docker run --name blog -v $PWD:/blog -dp 4000:4000 paweloczadly/blog jekyll server --host=0.0.0.0 --port=4000
 ```

@@ -1,10 +1,9 @@
-FROM ubuntu
+FROM ruby
 
-RUN apt-get update -yqq && apt-get install -yqq ruby ruby-dev make nodejs
-RUN gem install --no-rdoc --no-ri jekyll jekyll-sitemap rouge
+RUN curl -sL https://deb.nodesource.com/setup | bash -
+RUN apt-get install -y nodejs
 
-VOLUME /blog
-EXPOSE 4000
+RUN gem install jekyll jekyll-sitemap rouge
+RUN gem install octopress -v '~> 3.0.0.rc.12'
 
 WORKDIR /blog
-CMD ["jekyll", "server"]
