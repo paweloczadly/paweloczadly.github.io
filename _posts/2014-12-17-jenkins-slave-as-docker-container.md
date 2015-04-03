@@ -2,7 +2,7 @@
 layout: post
 title: "Jenkins slave as Docker container"
 category: devops
-tags: []
+tags: [jenkins, docker]
 comments: true
 share: true
 ---

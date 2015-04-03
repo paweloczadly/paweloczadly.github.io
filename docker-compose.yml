@@ -1,0 +1,7 @@
+blog:
+  build: .
+  volumes:
+    - $PWD:/blog
+  ports:
+    - 4000:4000
+  command: jekyll serve --host=0.0.0.0 --port=4000 --watch --force_polling
