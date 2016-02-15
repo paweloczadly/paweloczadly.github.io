@@ -1,6 +1,6 @@
 ```
 $ bosh deployment <deployment-manifest-path>
-$ bosh create release --force
+$ bosh create release --name custom_release --force
 $ bosh upload release
 $ bosh -n deploy
 ```
